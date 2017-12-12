@@ -13,7 +13,9 @@
   </ServiceManifestImport>
   <ServiceManifestImport>
     <ServiceManifestRef ServiceManifestName="LoadGeneratorServicePkg" ServiceManifestVersion="1.0.0" />
-    <ConfigOverrides />
+    <Policies>
+      <ServicePackageResourceGovernancePolicy CpuCores="1" />
+    </Policies>
   </ServiceManifestImport>
   <DefaultServices>
     <!-- The section below creates instances of service types, when an instance of this 
