@@ -63,5 +63,7 @@ namespace EventGrid.Helper
                 return signedSas;
             }
         }
+
+
     }
 }
