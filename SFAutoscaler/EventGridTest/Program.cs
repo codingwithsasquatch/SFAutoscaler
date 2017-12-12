@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EventGrid.Helper;
 using EventGrid.Helper.Events;
+using System.Fabric.Query;
 
 namespace EventGridTest
 {
@@ -29,7 +30,7 @@ namespace EventGridTest
                     Data =
                         new LoadInfo()
                         {
-                            Description = "Something"
+                            ClusterLoadInfo = new Dictionary<string, LoadMetricInformation>()
                         },
                     Subject = "clusterevent/loadinfo",
                     EventType = "loadinfo",
