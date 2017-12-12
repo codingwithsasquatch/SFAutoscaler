@@ -33,6 +33,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AutoscalerBotService\AutoscalerBotService.csproj" />
     <ProjectReference Include="..\LoadGeneratorService\LoadGeneratorService.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />

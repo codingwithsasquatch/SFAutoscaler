@@ -7,6 +7,10 @@ Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "SFAutoscalerApplication", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadGeneratorService", "LoadGeneratorService\LoadGeneratorService.csproj", "{10F9DF9B-B7A9-4488-854A-A4B5713E5AE8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoscalerBot", "AutoscalerBot\AutoscalerBot.csproj", "{E0D04A3B-03B5-4742-A4BF-4F1C6D2C793D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoscalerBotService", "AutoscalerBotService\AutoscalerBotService.csproj", "{6E311DA7-03BA-49D9-829E-996023E1889F}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventGrid.Helper", "EventGrid.Helper\EventGrid.Helper.csproj", "{9485CA68-17CC-45DF-A45F-C99C32EB18B9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventGridTest", "EventGridTest\EventGridTest.csproj", "{29A6A245-C09D-4D83-808E-6C4BDE68AD15}"
@@ -33,6 +37,20 @@ Global
 		{10F9DF9B-B7A9-4488-854A-A4B5713E5AE8}.Release|Any CPU.ActiveCfg = Release|x64
 		{10F9DF9B-B7A9-4488-854A-A4B5713E5AE8}.Release|x64.ActiveCfg = Release|x64
 		{10F9DF9B-B7A9-4488-854A-A4B5713E5AE8}.Release|x64.Build.0 = Release|x64
+		{E0D04A3B-03B5-4742-A4BF-4F1C6D2C793D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0D04A3B-03B5-4742-A4BF-4F1C6D2C793D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0D04A3B-03B5-4742-A4BF-4F1C6D2C793D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E0D04A3B-03B5-4742-A4BF-4F1C6D2C793D}.Debug|x64.Build.0 = Debug|Any CPU
+		{E0D04A3B-03B5-4742-A4BF-4F1C6D2C793D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0D04A3B-03B5-4742-A4BF-4F1C6D2C793D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0D04A3B-03B5-4742-A4BF-4F1C6D2C793D}.Release|x64.ActiveCfg = Release|Any CPU
+		{E0D04A3B-03B5-4742-A4BF-4F1C6D2C793D}.Release|x64.Build.0 = Release|Any CPU
+		{6E311DA7-03BA-49D9-829E-996023E1889F}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{6E311DA7-03BA-49D9-829E-996023E1889F}.Debug|x64.ActiveCfg = Debug|x64
+		{6E311DA7-03BA-49D9-829E-996023E1889F}.Debug|x64.Build.0 = Debug|x64
+		{6E311DA7-03BA-49D9-829E-996023E1889F}.Release|Any CPU.ActiveCfg = Release|x64
+		{6E311DA7-03BA-49D9-829E-996023E1889F}.Release|x64.ActiveCfg = Release|x64
+		{6E311DA7-03BA-49D9-829E-996023E1889F}.Release|x64.Build.0 = Release|x64
 		{9485CA68-17CC-45DF-A45F-C99C32EB18B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9485CA68-17CC-45DF-A45F-C99C32EB18B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9485CA68-17CC-45DF-A45F-C99C32EB18B9}.Debug|x64.ActiveCfg = Debug|Any CPU
