@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "SFAutoscalerApplication", "SFAutoscalerApplication\SFAutoscalerApplication.sfproj", "{20F4038D-7EB2-4538-8259-B9C1C7612BA1}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventGrid.Helper", "EventGrid.Helper\EventGrid.Helper.csproj", "{9485CA68-17CC-45DF-A45F-C99C32EB18B9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventGridTest", "EventGridTest\EventGridTest.csproj", "{29A6A245-C09D-4D83-808E-6C4BDE68AD15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadMonitorService", "LoadMonitorService\LoadMonitorService.csproj", "{CFEE307D-3396-4105-BB5E-E851996B8155}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,12 @@ Global
 		{29A6A245-C09D-4D83-808E-6C4BDE68AD15}.Release|Any CPU.Build.0 = Release|Any CPU
 		{29A6A245-C09D-4D83-808E-6C4BDE68AD15}.Release|x64.ActiveCfg = Release|Any CPU
 		{29A6A245-C09D-4D83-808E-6C4BDE68AD15}.Release|x64.Build.0 = Release|Any CPU
+		{CFEE307D-3396-4105-BB5E-E851996B8155}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{CFEE307D-3396-4105-BB5E-E851996B8155}.Debug|x64.ActiveCfg = Debug|x64
+		{CFEE307D-3396-4105-BB5E-E851996B8155}.Debug|x64.Build.0 = Debug|x64
+		{CFEE307D-3396-4105-BB5E-E851996B8155}.Release|Any CPU.ActiveCfg = Release|x64
+		{CFEE307D-3396-4105-BB5E-E851996B8155}.Release|x64.ActiveCfg = Release|x64
+		{CFEE307D-3396-4105-BB5E-E851996B8155}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

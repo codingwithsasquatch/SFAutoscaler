@@ -40,10 +40,5 @@
         <SingletonPartition />
       </StatelessService>
     </Service>
-    <Service Name="LoadGeneratorService">
-      <StatelessService ServiceTypeName="LoadGeneratorServiceType" InstanceCount="[LoadGeneratorService_InstanceCount]">
-        <SingletonPartition />
-      </StatelessService>
-    </Service>
   </DefaultServices>
 </ApplicationManifest>
