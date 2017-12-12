@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadGeneratorService", "Loa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventGrid.Helper", "EventGrid.Helper\EventGrid.Helper.csproj", "{9485CA68-17CC-45DF-A45F-C99C32EB18B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventGridTest", "EventGridTest\EventGridTest.csproj", "{29A6A245-C09D-4D83-808E-6C4BDE68AD15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,14 @@ Global
 		{9485CA68-17CC-45DF-A45F-C99C32EB18B9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9485CA68-17CC-45DF-A45F-C99C32EB18B9}.Release|x64.ActiveCfg = Release|Any CPU
 		{9485CA68-17CC-45DF-A45F-C99C32EB18B9}.Release|x64.Build.0 = Release|Any CPU
+		{29A6A245-C09D-4D83-808E-6C4BDE68AD15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29A6A245-C09D-4D83-808E-6C4BDE68AD15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29A6A245-C09D-4D83-808E-6C4BDE68AD15}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{29A6A245-C09D-4D83-808E-6C4BDE68AD15}.Debug|x64.Build.0 = Debug|Any CPU
+		{29A6A245-C09D-4D83-808E-6C4BDE68AD15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29A6A245-C09D-4D83-808E-6C4BDE68AD15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29A6A245-C09D-4D83-808E-6C4BDE68AD15}.Release|x64.ActiveCfg = Release|Any CPU
+		{29A6A245-C09D-4D83-808E-6C4BDE68AD15}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
