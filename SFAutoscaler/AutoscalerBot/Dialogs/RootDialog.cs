@@ -10,22 +10,22 @@ namespace AutoscalerBot.Dialogs
     {
         public Task StartAsync(IDialogContext context)
         {
-            context.Wait(MessageReceivedAsync);
-
+            context.Wait<Activity>(MessageReceivedAsync);
             return Task.CompletedTask;
         }
 
-        private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<object> result)
+        private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<Activity> result)
         {
-            var activity = await result as Activity;
+            Activity activity = await result;
 
-            // calculate something for us to return
-            int length = (activity.Text ?? string.Empty).Length;
+            PromptDialog.Confirm(context, OnConfirmed, "I'm the Service Fabric Autoscale Bot! Are you interested in receiving cluster health and autoscale information?");
+        }
 
-            // return our reply to the user
-            await context.PostAsync($"You sent {activity.Text} which was {length} characters");
+        private async Task OnConfirmed(IDialogContext context, IAwaitable<bool> result)
+        {
+            bool choice = await result;
 
-            context.Wait(MessageReceivedAsync);
+            await context.PostAsync($"You chose {choice}");
         }
     }
 }
