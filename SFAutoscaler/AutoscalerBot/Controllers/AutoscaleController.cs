@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using EventGrid.Helper;
+using EventGrid.Helper.Events;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -31,9 +32,14 @@ namespace AutoscalerBot.Controllers
                     Content = new StringContent(validationResponse)
                 };
             }
-
-            // TODO: Handle events
-            // Deserialize event based on type
+            else if(events[0].EventType == "loadinfo")
+            {
+                var loadInfo = JsonConvert.DeserializeObject<List<GridEvent<LoadInfo>>>(result);
+            }
+            else if (events[0].EventType == "scaleinfo")
+            {
+                var scaleInfo = JsonConvert.DeserializeObject<List<GridEvent<ScaleInfo>>>(result);
+            }           
 
 
             return Request.CreateResponse(HttpStatusCode.OK);
