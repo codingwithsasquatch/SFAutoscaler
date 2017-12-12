@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "SFAutoscalerApplication", "SFAutoscalerApplication\SFAutoscalerApplication.sfproj", "{20F4038D-7EB2-4538-8259-B9C1C7612BA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadGeneratorService", "LoadGeneratorService\LoadGeneratorService.csproj", "{10F9DF9B-B7A9-4488-854A-A4B5713E5AE8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20F4038D-7EB2-4538-8259-B9C1C7612BA1}.Debug|x64.ActiveCfg = Debug|x64
+		{20F4038D-7EB2-4538-8259-B9C1C7612BA1}.Debug|x64.Build.0 = Debug|x64
+		{20F4038D-7EB2-4538-8259-B9C1C7612BA1}.Debug|x64.Deploy.0 = Debug|x64
+		{20F4038D-7EB2-4538-8259-B9C1C7612BA1}.Release|x64.ActiveCfg = Release|x64
+		{20F4038D-7EB2-4538-8259-B9C1C7612BA1}.Release|x64.Build.0 = Release|x64
+		{20F4038D-7EB2-4538-8259-B9C1C7612BA1}.Release|x64.Deploy.0 = Release|x64
+		{10F9DF9B-B7A9-4488-854A-A4B5713E5AE8}.Debug|x64.ActiveCfg = Debug|x64
+		{10F9DF9B-B7A9-4488-854A-A4B5713E5AE8}.Debug|x64.Build.0 = Debug|x64
+		{10F9DF9B-B7A9-4488-854A-A4B5713E5AE8}.Release|x64.ActiveCfg = Release|x64
+		{10F9DF9B-B7A9-4488-854A-A4B5713E5AE8}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9575811E-396C-4A89-B1B6-FC2DCD4548A4}
+	EndGlobalSection
+EndGlobal
