@@ -30,7 +30,7 @@ namespace EventGridTest
                     Data =
                         new LoadInfo()
                         {
-                            ClusterLoadInfo = new Dictionary<string, LoadMetricInformation>()
+                            ClusterLoadInfo = new List<LoadMetricInformation>()
                         },
                     Subject = "clusterevent/loadinfo",
                     EventType = "loadinfo",

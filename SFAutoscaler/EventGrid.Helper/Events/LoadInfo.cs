@@ -10,6 +10,6 @@ namespace EventGrid.Helper.Events
 {
     public class LoadInfo
     {
-        public Dictionary<string, LoadMetricInformation> ClusterLoadInfo { get; set; }
+        public IList<LoadMetricInformation> ClusterLoadInfo { get; set; }
     }
 }

@@ -32,7 +32,7 @@ namespace LoadMonitorService
 
             while (!cancellationToken.IsCancellationRequested)
             {
-                var loadInfo = (await fc.QueryManager.GetClusterLoadInformationAsync()).LoadMetricInformationList.ToDictionary((info) => info.Name);
+                var loadInfo = (await fc.QueryManager.GetClusterLoadInformationAsync()).LoadMetricInformationList;
                 
                 //generate the new message ID
                 using (var tx = this.StateManager.CreateTransaction())

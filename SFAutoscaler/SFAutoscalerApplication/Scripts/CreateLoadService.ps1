@@ -1,5 +1,5 @@
 ﻿$i = 0
-$target = 2
+$target = 10
 
 while($i -lt $target)
 {
