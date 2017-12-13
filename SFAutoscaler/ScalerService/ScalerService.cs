@@ -57,12 +57,17 @@ namespace ScalerService
 
         protected override async Task RunAsync(CancellationToken cancellationToken)
         {
+            await Task.WhenAll(HandleEvents(cancellationToken), ScaleTracker(cancellationToken));
+        }
+
+        private async Task HandleEvents(CancellationToken cancellationToken)
+        {
             long maxProcessed = -1;
             long currentProcessed = -1;
 
             var events = await this.StateManager.GetOrAddAsync<IReliableDictionary<long, IList<LoadMetricInformation>>>("Events");
             var inbox = await this.StateManager.GetOrAddAsync<IReliableConcurrentQueue<long>>("Inbox");
-            //var  = await this.StateManager.GetOrAddAsync<IReliableConcurrentQueue<long>>("Inbox");
+            var progress = await this.StateManager.GetOrAddAsync<IReliableDictionary<long, ScaleOperationStatus>>("Progress");
 
             while (!cancellationToken.IsCancellationRequested)
             {
@@ -86,10 +91,9 @@ namespace ScalerService
                         {
                             foreach (var metricInfo in data.Value)
                             {
-                                if(((metricInfo.ClusterLoad / metricInfo.ClusterCapacity * 100) > 50) || (metricInfo.IsClusterCapacityViolation))
+                                if (((metricInfo.ClusterLoad / metricInfo.ClusterCapacity * 100) > 50) || (metricInfo.IsClusterCapacityViolation))
                                 {
-                                    //figure out how to scale the VMSS
-                                    //in PS this is Add-AzureRmServiceFabricNode
+                                    await progress.AddAsync(tx, currentProcessed, ScaleOperationStatus.NotStarted);
                                 }
                             }
                         }
@@ -100,6 +104,48 @@ namespace ScalerService
 
                 return;
             }
+        }
+
+        private async Task ScaleTracker(CancellationToken cancellationToken)
+        {
+            var progress = await this.StateManager.GetOrAddAsync<IReliableDictionary<long, ScaleOperationStatus>>("Progress");
+            IList<KeyValuePair<long, ScaleOperationStatus>> operations = new List<KeyValuePair<long, ScaleOperationStatus>>();
+
+            using (ITransaction tx = this.StateManager.CreateTransaction())
+            {
+                var enumerator = (await progress.CreateEnumerableAsync(tx, EnumerationMode.Unordered)).GetAsyncEnumerator();
+                while (await enumerator.MoveNextAsync(cancellationToken))
+                {
+                    if (enumerator.Current.Value == ScaleOperationStatus.NotStarted)
+                    {
+                        operations.Add(enumerator.Current);
+                    }
+                }
+
+                await tx.CommitAsync();
+            }
+
+            foreach (var operation in operations)
+            {
+                if (operation.Value == ScaleOperationStatus.NotStarted)
+                {
+                    using (ITransaction tx = this.StateManager.CreateTransaction())
+                    {
+                        //kickoff scale operation then
+                        var result = await progress.TryUpdateAsync(tx, operation.Key, ScaleOperationStatus.InProgress, ScaleOperationStatus.NotStarted);
+
+                        await tx.CommitAsync();
+                    }
+                }
+            }
+        }
+            
+
+        private enum ScaleOperationStatus
+        {
+            NotStarted,
+            InProgress,
+            Done
         }
     }
 }

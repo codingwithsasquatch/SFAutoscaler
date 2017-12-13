@@ -8,6 +8,8 @@ using Microsoft.ServiceFabric.Data;
 using Microsoft.ServiceFabric.Data.Collections;
 using System.Net;
 using System.Fabric.Query;
+using EventGrid.Helper.Events;
+using EventGrid.Helper;
 
 namespace ScalerService.Controllers
 {
@@ -23,17 +25,19 @@ namespace ScalerService.Controllers
 
         // POST api/LoadInfo
         [HttpPost]
-        public async Task<HttpResponseMessage> Post()
+        public async Task Post(GridEvent<LoadInfo> data)
         {
             var events = await stateManager.GetOrAddAsync<IReliableDictionary<long, IList<LoadMetricInformation>>>("Events");
             var inbox = await stateManager.GetOrAddAsync<IReliableConcurrentQueue<long>>("Inbox");
 
             using (ITransaction tx = this.stateManager.CreateTransaction())
             {
-                await inbox.EnqueueAsync(tx, 0);
-                await events.AddAsync(tx, 0, new List<LoadMetricInformation>());
+                await inbox.EnqueueAsync(tx, long.Parse(data.Id));
+                await events.AddAsync(tx, long.Parse(data.Id), data.Data.ClusterLoadInfo);
                 await tx.CommitAsync();
             }
+
+            return;
         }
     }
 }
