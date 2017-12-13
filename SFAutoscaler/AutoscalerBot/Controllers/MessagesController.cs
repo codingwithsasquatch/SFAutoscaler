@@ -6,6 +6,7 @@ using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 using System.Linq;
 using System;
+using System.Configuration;
 
 namespace AutoscalerBot
 {
@@ -18,6 +19,7 @@ namespace AutoscalerBot
         /// </summary>
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
+            var v = ConfigurationManager.AppSettings["MicrosoftAppPassword"];
             if (activity.Type == ActivityTypes.Message)
             {
                 await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());

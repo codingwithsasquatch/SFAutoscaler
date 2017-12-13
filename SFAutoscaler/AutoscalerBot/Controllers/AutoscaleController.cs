@@ -12,7 +12,6 @@ using EventGrid.Helper.Events;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-
 namespace AutoscalerBot.Controllers
 {
     public class AutoscaleController : ApiController
