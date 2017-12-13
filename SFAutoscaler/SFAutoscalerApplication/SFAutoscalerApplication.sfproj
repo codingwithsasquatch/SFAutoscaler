@@ -35,6 +35,7 @@
     <ProjectReference Include="..\LoadGeneratorService\LoadGeneratorService.csproj" />
     <ProjectReference Include="..\LoadMonitorService\LoadMonitorService.csproj" />
     <ProjectReference Include="..\ScalerGatewayService\ScalerGatewayService.csproj" />
+    <ProjectReference Include="..\ScalerService\ScalerService.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

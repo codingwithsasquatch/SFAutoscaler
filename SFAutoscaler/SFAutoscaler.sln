@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "SFAutoscalerApplication", "SFAutoscalerApplication\SFAutoscalerApplication.sfproj", "{20F4038D-7EB2-4538-8259-B9C1C7612BA1}"
 EndProject
@@ -17,7 +17,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventGridTest", "EventGridT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadMonitorService", "LoadMonitorService\LoadMonitorService.csproj", "{CFEE307D-3396-4105-BB5E-E851996B8155}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScalerGatewayService", "ScalerGatewayService\ScalerGatewayService.csproj", "{05C5B20D-F8DB-45CB-B2A1-59CC7667BDEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScalerGatewayService", "ScalerGatewayService\ScalerGatewayService.csproj", "{05C5B20D-F8DB-45CB-B2A1-59CC7667BDEE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScalerService", "ScalerService\ScalerService.csproj", "{EC12C35E-C557-4A82-AA1B-1FD7B67BAC2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +87,14 @@ Global
 		{05C5B20D-F8DB-45CB-B2A1-59CC7667BDEE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{05C5B20D-F8DB-45CB-B2A1-59CC7667BDEE}.Release|x64.ActiveCfg = Release|Any CPU
 		{05C5B20D-F8DB-45CB-B2A1-59CC7667BDEE}.Release|x64.Build.0 = Release|Any CPU
+		{EC12C35E-C557-4A82-AA1B-1FD7B67BAC2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC12C35E-C557-4A82-AA1B-1FD7B67BAC2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC12C35E-C557-4A82-AA1B-1FD7B67BAC2D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EC12C35E-C557-4A82-AA1B-1FD7B67BAC2D}.Debug|x64.Build.0 = Debug|Any CPU
+		{EC12C35E-C557-4A82-AA1B-1FD7B67BAC2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC12C35E-C557-4A82-AA1B-1FD7B67BAC2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC12C35E-C557-4A82-AA1B-1FD7B67BAC2D}.Release|x64.ActiveCfg = Release|Any CPU
+		{EC12C35E-C557-4A82-AA1B-1FD7B67BAC2D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

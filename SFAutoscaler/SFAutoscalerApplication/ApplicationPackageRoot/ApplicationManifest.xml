@@ -24,6 +24,10 @@
     <ConfigOverrides />
   </ServiceManifestImport>
   <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="ScalerServicePkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides />
+  </ServiceManifestImport>
+  <ServiceManifestImport>
     <ServiceManifestRef ServiceManifestName="LoadGeneratorServicePkg" ServiceManifestVersion="1.0.0" />
     <Policies>
       <ServicePackageResourceGovernancePolicy CpuCores="1" />
