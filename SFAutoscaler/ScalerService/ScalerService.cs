@@ -13,6 +13,7 @@ using Microsoft.ServiceFabric.Services.Runtime;
 using Microsoft.ServiceFabric.Data;
 using Microsoft.ServiceFabric.Data.Collections;
 using System.Fabric.Query;
+using AzureInfra.Helper;
 
 namespace ScalerService
 {
@@ -22,6 +23,7 @@ namespace ScalerService
     internal sealed class ScalerService : Microsoft.ServiceFabric.Services.Runtime.StatefulService
     {
         private static FabricClient fc = new FabricClient();
+        private static AzureScaler azureScaler = null;
 
         public ScalerService(StatefulServiceContext context)
             : base(context)
@@ -100,6 +102,7 @@ namespace ScalerService
                     }
 
                     await tx.CommitAsync();
+                    maxProcessed = currentProcessed;
                 }
 
                 return;
@@ -108,38 +111,63 @@ namespace ScalerService
 
         private async Task ScaleTracker(CancellationToken cancellationToken)
         {
-            var progress = await this.StateManager.GetOrAddAsync<IReliableDictionary<long, ScaleOperationStatus>>("Progress");
-            IList<KeyValuePair<long, ScaleOperationStatus>> operations = new List<KeyValuePair<long, ScaleOperationStatus>>();
-
-            using (ITransaction tx = this.StateManager.CreateTransaction())
+            while (!cancellationToken.IsCancellationRequested)
             {
-                var enumerator = (await progress.CreateEnumerableAsync(tx, EnumerationMode.Unordered)).GetAsyncEnumerator();
-                while (await enumerator.MoveNextAsync(cancellationToken))
+                await Task.Delay(TimeSpan.FromMinutes(1), cancellationToken);
+
+                var progress = await this.StateManager.GetOrAddAsync<IReliableDictionary<long, ScaleOperationStatus>>("Progress");
+
+                var completedOperations = new List<long>();
+
+                using (ITransaction tx = this.StateManager.CreateTransaction())
                 {
-                    if (enumerator.Current.Value == ScaleOperationStatus.NotStarted)
+                    var enumerator = (await progress.CreateEnumerableAsync(tx, EnumerationMode.Unordered)).GetAsyncEnumerator();
+                    while (await enumerator.MoveNextAsync(cancellationToken))
                     {
-                        operations.Add(enumerator.Current);
+                        if (enumerator.Current.Value == ScaleOperationStatus.NotStarted)
+                        {
+                            await Task.Run(() => ScaleoutTask(enumerator.Current.Key, cancellationToken));
+                        }
+                        else if(enumerator.Current.Value == ScaleOperationStatus.Done)
+                        {
+                            await Task.Run(() => CompleteScaleOperation(enumerator.Current.Key, cancellationToken));
+                        }
                     }
-                }
 
-                await tx.CommitAsync();
-            }
-
-            foreach (var operation in operations)
-            {
-                if (operation.Value == ScaleOperationStatus.NotStarted)
-                {
-                    using (ITransaction tx = this.StateManager.CreateTransaction())
-                    {
-                        //kickoff scale operation then
-                        var result = await progress.TryUpdateAsync(tx, operation.Key, ScaleOperationStatus.InProgress, ScaleOperationStatus.NotStarted);
-
-                        await tx.CommitAsync();
-                    }
+                    await tx.CommitAsync();
                 }
             }
         }
-            
+
+        private async Task ScaleoutTask(long eventId, CancellationToken ct)
+        {
+            var events = await this.StateManager.GetOrAddAsync<IReliableDictionary<long, IList<LoadMetricInformation>>>("Events");
+            var progress = await this.StateManager.GetOrAddAsync<IReliableDictionary<long, ScaleOperationStatus>>("Progress");
+
+            //theoretically figure out which vmss to scale based on the actual metric info
+            using (ITransaction tx = this.StateManager.CreateTransaction())
+            {
+                await progress.SetAsync(tx, eventId, ScaleOperationStatus.InProgress);
+                await azureScaler.AddNodesAsync("", 1, ct);
+                await tx.CommitAsync();
+            }
+        }
+
+        private async Task CompleteScaleOperation(long eventId, CancellationToken ct)
+        {
+            var events = await this.StateManager.GetOrAddAsync<IReliableDictionary<long, IList<LoadMetricInformation>>>("Events");
+            var progress = await this.StateManager.GetOrAddAsync<IReliableDictionary<long, ScaleOperationStatus>>("Progress");
+
+            //theoretically figure out which vmss to scale based on the actual metric info
+            using (ITransaction tx = this.StateManager.CreateTransaction())
+            {
+                await progress.SetAsync(tx, eventId, ScaleOperationStatus.Done);
+                await azureScaler.VerifyScaleAsync("", 1, ct); //figure out how to smuggle the intended target here
+                await tx.CommitAsync();
+            }
+
+        }
+
 
         private enum ScaleOperationStatus
         {
