@@ -19,6 +19,9 @@ namespace ScalerService
 {
     /// <summary>
     /// The FabricRuntime creates an instance of this class for each service type instance. 
+    /// TODOS: Rewrite state management to correctly represent target goal for scale based on load report coming in
+    /// // Figure out how to handle Azure's weird fluent API blocking design with appropriate goal and status tracking
+    /// // Figure out if there's a way for the monitor to talk directly to the scaler. 
     /// </summary>
     internal sealed class ScalerService : Microsoft.ServiceFabric.Services.Runtime.StatefulService
     {
