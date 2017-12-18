@@ -148,9 +148,11 @@ namespace ScalerService
             using (ITransaction tx = this.StateManager.CreateTransaction())
             {
                 await progress.SetAsync(tx, eventId, ScaleOperationStatus.InProgress);
-                await azureScaler.AddNodesAsync("", 1, ct);
                 await tx.CommitAsync();
             }
+
+            await azureScaler.AddNodesAsync("", 1, ct); 
+            //blocks till complete but this will now double count on crash, will need to figure out target and then keep target
         }
 
         private async Task CompleteScaleOperation(long eventId, CancellationToken ct)
@@ -165,7 +167,6 @@ namespace ScalerService
                 await azureScaler.VerifyScaleAsync("", 1, ct); //figure out how to smuggle the intended target here
                 await tx.CommitAsync();
             }
-
         }
 
 
